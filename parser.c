@@ -13,7 +13,7 @@ int getMatchingBraceIndex(unsigned int braceIndex, char* str) {
 
 	if (str[braceIndex] == '[') {
 
-		for (i; i <= sizeof(str); i++) {
+		for (i; i < strlen(str); i++) {
 			if (str[i] == '[') {
 				if (i == braceIndex) {
 					returnLvl = level;
@@ -31,7 +31,7 @@ int getMatchingBraceIndex(unsigned int braceIndex, char* str) {
 	} else if (str[braceIndex] == ']') {
 		int i = sizeof(str);
 
-		for (i; i >= sizeof(str); i--) {
+		for (i; i > strlen(str); i--) {
 			if (str[i] == ']') {
 				if (i == braceIndex) {
 					returnLvl = level;
@@ -64,7 +64,7 @@ void exec(char* code) {
 		int closebrs = 0;
 		int i = 0;
 
-		for (i; i <= sizeof(code); i++) {
+		for (i; i < strlen(code); i++) {
 			if (code[i] == '[') {
 				openbrs++;
 			} else if (code[i] == ']') {
@@ -89,7 +89,7 @@ void exec(char* code) {
 	int i = 0;
 	bool output = false;
 
-	for (i; i <= sizeof(code); i++) {
+	for (i; i < strlen(code); i++) {
 		switch (code[i]) {
 			case '+':
 				++*ptr;
