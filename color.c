@@ -1,7 +1,6 @@
-#include <windows.h>
 #include "color.h"
+#include <stdio.h>
 
 void setColor(unsigned char foreground, unsigned char background) {
-	HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
-	SetConsoleTextAttribute(hConsole, foreground + (16 * background));
+	printf("\x1B[%i; %i; %im", 1, foreground + 30, background + 40);
 }
