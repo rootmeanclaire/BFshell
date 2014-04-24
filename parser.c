@@ -3,12 +3,15 @@
 #include <string.h>
 #include "parser.h"
 #include "color.h"
+#include "settings.h"
 
-char memory[30/*000*/];
+char memory[30000];
 char *ptr = memory;
 
+//Matches an opening or closing bracket to a corresponding opening or closing bracket
 int getMatchingBraceIndex(unsigned int braceIndex, char* str) {
-	int i, level;
+	int i = 0;
+	int level = 0;
 	int returnLvl = -1;
 
 	if (str[braceIndex] == '[') {
@@ -29,9 +32,9 @@ int getMatchingBraceIndex(unsigned int braceIndex, char* str) {
 			}
 		}
 	} else if (str[braceIndex] == ']') {
-		int i = sizeof(str);
+		int i = strlen(str);
 
-		for (i; i > strlen(str); i--) {
+		for (i; i > 0; i--) {
 			if (str[i] == ']') {
 				if (i == braceIndex) {
 					returnLvl = level;
@@ -47,6 +50,9 @@ int getMatchingBraceIndex(unsigned int braceIndex, char* str) {
 		}
 	} else {
 		//Error
+		setColor(RED, BLACK);
+		printf("Unable to match brace at index %i\n", braceIndex);
+		setColor(DEFAULT, BLACK);
 		return -1;
 	}
 
@@ -105,7 +111,9 @@ void exec(char* code) {
 				break;
 			case '.':
 				putchar(*ptr);
-//				printf("(%d)", (int) *ptr);
+				if (printASCIIval) {
+					printf("(%d)", (int) *ptr);
+				}
 				output = true;
 				break;
 			case ',':
@@ -121,7 +129,7 @@ void exec(char* code) {
 					i = getMatchingBraceIndex(i, code);
 				}
 				break;
-		}
+			}
 	}
 	if (output) {
 		putchar('\n');

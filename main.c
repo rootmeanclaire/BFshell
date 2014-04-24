@@ -5,7 +5,7 @@
 #include "parser.h"
 
 /**************************\
- * Version: 1.2.1 Beta    *
+ * Version: 1.2.2 Beta    *
  * Author: Evan Shimoniak *
 \**************************/
 
@@ -14,21 +14,25 @@ bool isCode(char* chars);
 void processCommand(char* line);
 
 int main() {
+	//Create a character array to store user input
 	char line[256];
 
 	do {
+		//Print input prompt
 		printf("~ ");
 
-		//Get input
+		//Read user input upon entering a newline
 		if (fgets(line, sizeof(line), stdin)) {
+			//If line contains a syntax character([]+-,.<>), then parse as syntax and execute
 			if (isCode(line)) {
 				exec(line);
 			} else {
+				//If line contains no syntax characters, then attempt processing as an interpreter command
 				processCommand(line);
 //				char** splitStr = splitStrBySpaces(line);
 //				int i = 0;
 //
-//				for (i; i < strlen(splitStr); i++) {
+//				for (i; i < sizeof(splitStr); i++) {
 //					printf("%s\n", splitStr[i]);
 //				}
 			}
@@ -55,7 +59,7 @@ void processCommand(char* line) {
 	if (strcmp(line, "help\n") == 0) {
 		printf("COMMANDS\n\t\"version\" Print the current version of the interpreter\n\t\"reset\"   Reset program memory\n");
 	} else if (strcmp(line, "version\n") == 0) {
-		printf("Beta 1.2.1\n");
+		printf("Beta 1.2.2\n");
 	} else if (strcmp(line, "reset\n") == 0) {
 		reset();
 		setColor(BLACK, DEFAULT);
@@ -66,6 +70,7 @@ void processCommand(char* line) {
 	}
 }
 
+//Unused
 char** splitStrBySpaces(char* str) {
 	unsigned int i = 0;
 	unsigned int letter = 0;

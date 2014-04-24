@@ -19,3 +19,12 @@ Beta
 1.2.1
 -----
  * Added icon
+
+1.2.2
+-----
+ * Updated icon
+ * Added internal settings
+
+1.2.3
+-----
+ * Internal improvements
