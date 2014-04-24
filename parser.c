@@ -18,11 +18,10 @@ int getMatchingBraceIndex(unsigned int braceIndex, char* str) {
 
 		for (i; i < strlen(str); i++) {
 			if (str[i] == '[') {
+				level++;
 				if (i == braceIndex) {
 					returnLvl = level;
-					level++;
 				}
-				level++;
 			} else if (str[i] == ']') {
 				if (level == returnLvl) {
 					return i;
@@ -32,14 +31,14 @@ int getMatchingBraceIndex(unsigned int braceIndex, char* str) {
 			}
 		}
 	} else if (str[braceIndex] == ']') {
-		int i = strlen(str);
+		int i = strlen(str) - 1;
 
-		for (i; i > 0; i--) {
+		for (i; i >= 0; i--) {
 			if (str[i] == ']') {
+				level++;
 				if (i == braceIndex) {
 					returnLvl = level;
 				}
-				level++;
 			} else if (str[i] == '[') {
 				if (level == returnLvl) {
 					return i;
