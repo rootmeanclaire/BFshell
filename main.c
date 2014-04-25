@@ -29,12 +29,6 @@ int main() {
 			} else {
 				//If line contains no syntax characters, then attempt processing as an interpreter command
 				processCommand(line);
-//				char** splitStr = splitStrBySpaces(line);
-//				int i = 0;
-//
-//				for (i; i < sizeof(splitStr); i++) {
-//					printf("%s\n", splitStr[i]);
-//				}
 			}
 		}
 	} while (true);
@@ -47,8 +41,15 @@ bool isCode(char* chars) {
 	int i = 0;
 
 	for (i; i < strlen(chars); i++) {
-		if (chars[i] == '+' || chars[i] == '-' || chars[i] == '>' || chars[i] == '<' || chars[i] == '[' || chars[i] == ']' || chars[i] == ',' || chars[i] == '.') {
-			return true;
+		if (chars[i] == '+' ||
+			chars[i] == '-' ||
+			chars[i] == '>' ||
+			chars[i] == '<' ||
+			chars[i] == '[' ||
+			chars[i] == ']' ||
+			chars[i] == ',' ||
+			chars[i] == '.') {
+				return true;
 		}
 	}
 

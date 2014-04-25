@@ -28,3 +28,13 @@ Beta
 1.2.3
 -----
  * Internal improvements
+
+1.3.0
+-----
+ * Fixed "hello world" bug
+
+1.3.1
+-----
+ * Improved readability
+ * Commented
+ * Changed memory to unsigned
