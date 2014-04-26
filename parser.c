@@ -16,6 +16,7 @@ int getMatchingBraceIndex(unsigned int braceIndex, char* str) {
 	//Matching brace's nesting level
 	//(Matching braces have to be at the same level)
 	int returnLvl = -1;
+	int stringLen = strlen(str);
 
 	/*******************************************************************************\
 	 * Note:                                                                       *
@@ -28,7 +29,7 @@ int getMatchingBraceIndex(unsigned int braceIndex, char* str) {
 		int i = 0;
 
 		//Iterate through given string
-		for (i; i < strlen(str); i++) {
+		for (i; i < stringLen; i++) {
 			//If current character of string is open brace
 			if (str[i] == '[') {
 				//Increment nesting level
@@ -51,7 +52,7 @@ int getMatchingBraceIndex(unsigned int braceIndex, char* str) {
 	//If brace given is close brace
 	} else if (str[braceIndex] == ']') {
 		//Iterator
-		int i = strlen(str) - 1;
+		int i = stringLen - 1;
 
 		//Iterate through given string
 		for (i; i >= 0; i--) {
@@ -96,14 +97,31 @@ void exec(char* code) {
 		int openbrs = 0;
 		int closebrs = 0;
 		int i = 0;
+		bool foundOpen = false;
+		bool lastBraceOpen = false;
 
 		//Check number of openning and closing braces
 		for (i; i < strlen(code); i++) {
 			if (code[i] == '[') {
+				foundOpen = true;
+				lastBraceOpen = true;
 				openbrs++;
 			} else if (code[i] == ']') {
+				if (!foundOpen) {
+					setColor(RED, BLACK);
+					printf("Syntax error: missing '['\n");
+					setColor(DEFAULT, BLACK);
+					return;
+				}
+				lastBraceOpen = false;
 				closebrs++;
 			}
+		}
+		if (lastBraceOpen) {
+			setColor(RED, BLACK);
+			printf("Syntax error: missing ']'\n");
+			setColor(DEFAULT, BLACK);
+			return;
 		}
 
 		//If number of open braces isn't equal to number of close braces, print error message and abort execution

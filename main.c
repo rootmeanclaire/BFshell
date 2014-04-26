@@ -5,7 +5,7 @@
 #include "parser.h"
 
 /**************************\
- * Version: 1.3.0 Beta    *
+ * Version: 1.3.2 Beta    *
  * Author: Evan Shimoniak *
 \**************************/
 
@@ -60,7 +60,7 @@ void processCommand(char* line) {
 	if (strcmp(line, "help\n") == 0) {
 		printf("COMMANDS\n\t\"version\" Print the current version of the interpreter\n\t\"reset\"   Reset program memory\n");
 	} else if (strcmp(line, "version\n") == 0) {
-		printf("Beta 1.3.0\n");
+		printf("Beta 1.3.2\n");
 	} else if (strcmp(line, "reset\n") == 0) {
 		reset();
 		setColor(BLACK, DEFAULT);
