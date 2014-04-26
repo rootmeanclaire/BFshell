@@ -5,7 +5,7 @@
 #include "parser.h"
 
 /**************************\
- * Version: 1.2.2 Beta    *
+ * Version: 1.3.2 Beta    *
  * Author: Evan Shimoniak *
 \**************************/
 
@@ -29,12 +29,6 @@ int main() {
 			} else {
 				//If line contains no syntax characters, then attempt processing as an interpreter command
 				processCommand(line);
-//				char** splitStr = splitStrBySpaces(line);
-//				int i = 0;
-//
-//				for (i; i < sizeof(splitStr); i++) {
-//					printf("%s\n", splitStr[i]);
-//				}
 			}
 		}
 	} while (true);
@@ -47,8 +41,15 @@ bool isCode(char* chars) {
 	int i = 0;
 
 	for (i; i < strlen(chars); i++) {
-		if (chars[i] == '+' || chars[i] == '-' || chars[i] == '>' || chars[i] == '<' || chars[i] == '[' || chars[i] == ']' || chars[i] == ',' || chars[i] == '.') {
-			return true;
+		if (chars[i] == '+' ||
+			chars[i] == '-' ||
+			chars[i] == '>' ||
+			chars[i] == '<' ||
+			chars[i] == '[' ||
+			chars[i] == ']' ||
+			chars[i] == ',' ||
+			chars[i] == '.') {
+				return true;
 		}
 	}
 
@@ -59,7 +60,7 @@ void processCommand(char* line) {
 	if (strcmp(line, "help\n") == 0) {
 		printf("COMMANDS\n\t\"version\" Print the current version of the interpreter\n\t\"reset\"   Reset program memory\n");
 	} else if (strcmp(line, "version\n") == 0) {
-		printf("Beta 1.2.2\n");
+		printf("Beta 1.3.2\n");
 	} else if (strcmp(line, "reset\n") == 0) {
 		reset();
 		setColor(BLACK, DEFAULT);
